@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:b="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/security 
+    http://www.springframework.org/schema/security/spring-security-3.0.xsd"
+	xmlns:sec="http://www.springframework.org/schema/security">
+
+	<sec:global-method-security
+		secured-annotations="enabled" />
+
+	<sec:http use-expressions="true" auto-config="true" >
+			
+		<sec:intercept-url pattern="/*.jsp" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/pages/index.xhtml" access="hasAnyRole('ADMINISTRADOR','USUARIO','ESPECIAL')" />
+		<sec:intercept-url pattern="/pages/usuario/**" access="hasRole('ADMINISTRADOR')" />		
+
+		<sec:form-login login-page="/auth/login.xhtml"
+			authentication-failure-url="/auth/login.xhtml" />
+			
+			<sec:logout invalidate-session="true"/>
+
+		<sec:access-denied-handler error-page="/auth/acessoNegado.xhtml" />
+	</sec:http>
+
+
+	<sec:authentication-manager alias="authenticationManager">
+		<sec:authentication-provider
+			user-service-ref="userDetailService" />
+
+	</sec:authentication-manager>
+
+
+
+</b:beans>

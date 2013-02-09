@@ -1,0 +1,146 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/template/template_padrao.xhtml">
+		<ui:define name="conteudo">
+			<p />
+			<p />
+			<p:outputPanel autoUpdate="true">
+				<h:panelGroup id="mensagens" layout="block">
+					<p:messages id="messages" showDetail="false" autoUpdate="true" />
+				</h:panelGroup>
+			</p:outputPanel>
+
+			<h:form binding="#{usuarioBean.form}">
+				<p:panel header="Cadastro de Usuários">
+
+					<t:saveState value="#{usuarioBean.state}" />
+					<t:saveState value="#{usuarioBean.usuario}" />
+					<t:saveState value="#{usuarioBean.usuarios}" />
+
+					<t:div id="blocoDePesquisa" rendered="#{usuarioBean.pesquisando}">
+						<div align="right" style="margin-bottom: 10px;">
+							<div style="margin-left: 10px; float: right;">
+								<h:commandButton value="#{text['label.adicionar']}"
+									action="#{usuarioBean.preparaParaAdicionar}"
+									styleClass="botao-default">
+									<f:ajax render="@form" />
+								</h:commandButton>
+							</div>
+							<div style="margin-left: 10px; float: right;">
+								<h:commandButton value="Listar" action="#{usuarioBean.lista}"
+									styleClass="botao-default">
+									<f:ajax render="tabela :mensagens" />
+								</h:commandButton>
+							</div>							
+							<div class="clear"></div>
+						</div>
+						<p:dataTable id="tabela" value="#{usuarioBean.usuarios}"
+							var="usuario" rowClasses="odd, even"
+							emptyMessage="#{text['table.empty']}">
+
+							<p:column headerText="Nome">
+								<h:outputText value="#{usuario.nome}" />
+							</p:column>
+							<p:column headerText="Login">
+								<h:outputText value="#{usuario.username}" />
+
+							</p:column>
+							<p:column headerText="Perfil">
+								<h:outputText value="#{usuario.roles[0].name}" />
+
+							</p:column>
+
+							<p:column headerText="Ações">
+								<div style="margin-left: 10px; float: left;">
+									<h:commandButton value="#{text['label.editar']}"
+										action="#{usuarioBean.preparaParaAlterar(usuario)}"
+										styleClass="botao-default">
+										<f:ajax render="@form" />
+									</h:commandButton>
+								</div>
+								<div style="margin-left: 10px; float: left;">
+									<h:commandButton value="#{text['label.remover']}"
+										action="#{usuarioBean.remove}"
+										onclick="return confirm('Deseja realmente remover este usuário?');"
+										styleClass="botao-default">
+										<f:ajax render="@form :mensagens" />
+										<f:setPropertyActionListener target="#{usuarioBean.usuario}"
+											value="#{usuario}" />
+									</h:commandButton>
+								</div>
+							</p:column>
+						</p:dataTable>
+					</t:div>
+
+					<t:div id="blocoDeEdicao" rendered="#{not usuarioBean.pesquisando}">
+						<p:fieldset legend="Dados do Usuário">
+							<p:focus for="nome" />
+
+							<div style="margin-left: 10px; float: left;">
+								<h:outputLabel value="Nome" for="nome" />
+								<p:inputText id="nome" value="#{usuarioBean.usuario.nome}"
+									label="Nome" required="true" size="50"
+									onkeydown="this.value = this.value.toUpperCase()"
+									onkeyup="this.value = this.value.toUpperCase()" />
+							</div>
+
+							<div style="margin-left: 10px; float: left;">
+								<h:outputLabel value="Login" for="username" />
+								<p:inputText id="username"
+									value="#{usuarioBean.usuario.username}" label="Login"
+									required="true" requiredMessage="Informe um Login"
+									onkeydown="this.value = this.value.toLowerCase()"
+									onkeyup="this.value = this.value.toLowerCase()" size="25">
+									<f:validateLength minimum="4" />
+								</p:inputText>
+							</div>
+
+							<div class="clear" />
+
+						</p:fieldset>
+						<div align="left" style="margin-top: 20px;">
+							<div style="margin-left: 10px; float: left;">
+								<h:commandButton value="#{text['label.salvar']}"
+									action="#{usuarioBean.adiciona}"
+									rendered="#{usuarioBean.adicionando}"
+									styleClass="botao-default">
+									<f:ajax execute="@form" render="@form :mensagens" />
+								</h:commandButton>
+							</div>
+							<div style="margin-left: 10px; float: left;">
+								<h:commandButton value="#{text['label.atualizar']}"
+									action="#{usuarioBean.altera}"
+									rendered="#{usuarioBean.editando}" styleClass="botao-default">
+									<f:ajax execute="@form" render="@form :mensagens" />
+								</h:commandButton>
+							</div>
+							<div style="margin-left: 10px; float: left;">
+								<h:commandButton value="#{text['label.voltar']}"
+									immediate="true" action="#{usuarioBean.voltar}"
+									styleClass="botao-default">
+									<f:ajax execute="@form" render="@form :mensagens" />
+								</h:commandButton>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</t:div>
+				</p:panel>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

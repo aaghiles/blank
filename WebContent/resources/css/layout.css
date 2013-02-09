@@ -1,0 +1,483 @@
+body {
+	margin: 0;
+	background: #FBFBFB;
+	font-size: 11px;
+	min-width: 980px;
+}
+
+.ui-menu .ui-menu-parent .ui-menu-child {
+    display: none;
+    font-size: 100%;
+    line-height: 1.3;
+    list-style: none outside none;
+    margin: 0;
+    outline: 0 none;
+    padding: 0.3em;
+    position: absolute;
+    text-decoration: none;
+    width: 180px !important;
+}
+
+.botao-default {
+	-moz-box-shadow: inset 0px 0px 0px 0px #ffffff;
+	-webkit-box-shadow: inset 0px 0px 0px 0px #ffffff;
+	box-shadow: inset 0px 0px 0px 0px #ffffff;
+	background:
+		url("/blank/javax.faces.resource/images/ui-bg_glass_80_d7ebf9_1x400.png.xhtml?ln=primefaces-cupertino")
+		repeat-x scroll 50% 50% #D7EBF9;		
+	border : 1px solid #ada8ad; display : inline-block; color :	#0070A3; 	
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+	font-size: 1.1em;
+	font-weight: bold;
+	padding: 4px 8px;
+	text-decoration: none !important;
+	text-shadow: 0px 0px 0px #ffffff;
+	text-align: center;
+	position: relative;
+	cursor: pointer;
+	margin-right: 0.1em;
+	overflow: visible;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;	
+	border: 1px solid #AED0EA;
+	display: inline-block;
+	color: #0070A3;	
+	border-radius: 6px 6px 6px 6px;
+}
+
+.botao-default:hover {
+	background:
+		url("/blank/javax.faces.resource/images/ui-bg_glass_100_e4f1fb_1x400.png.xhtml?ln=primefaces-cupertino")
+		repeat-x scroll 50% 50% #E4F1FB;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #E4F1FB
+		), color-stop(1, #E4F1FB) );
+	background: -moz-linear-gradient(center top, #E4F1FB 5%, #ededed 100%);
+	
+	border: 1px solid #74B2E2;
+}
+
+.botao-default:active {
+	position: relative;
+	top: 1px;
+}
+
+.botao-default:disabled {
+	opacity: 0.35;
+}
+
+ul.icons {
+	margin: 0;
+	padding: 0;
+}
+
+ul.icons li {
+	margin: 2px;
+	position: relative;
+	padding: 4px 0;
+	cursor: pointer;
+	float: left;
+	list-style: none;
+}
+
+ul.icons span.ui-icon {
+	float: left;
+	margin: 0 4px;
+}
+
+small {
+	font-size: 9px;
+	color: blue;
+	text-transform: uppercase;
+	font-style: italic
+}
+
+small.obrigatorio {
+	color: red;
+	font-weight: bold;
+	display: inline-block;
+	margin-left: 5px;
+}
+
+h2.grid_12 {
+	background: #D8DCDF;
+	text-transform: uppercase;
+	border-bottom: solid 1px #ccc;
+	padding: 5px;
+}
+
+h3,#container-body h1 {
+	text-transform: uppercase;
+	color: red;
+}
+
+h3 a {
+	color: #FFF !important
+}
+
+.btn_delete {
+	background: url("#{resource['images:btn_delete2.png']}") no-repeat top
+		center;
+	height: 35px;
+	display: block;
+}
+
+/**
+*   Tema
+*/
+#header {
+	display: block;
+	height: 85px;
+	width: 100%;
+	background: #f2f5f7 url("#{resource['images:bg-header-color-web-valendo.png']}") no-repeat center center;
+	color: #000;
+	border-bottom: solid 1px #dddddd;
+	border-top: solid 1px #dddddd;
+}
+
+#header #logomarca {
+	height: 70px;
+	margin: 5px;
+	background: url("#{resource['images:logo2.png']}") no-repeat left center;
+}
+
+#header #slogan {
+	text-align: right;
+	margin-top: 20px;
+}
+
+#header #slogan h1,#header #slogan h2 {
+	margin: 0 !important;
+	text-transform: uppercase;
+}
+
+#container-body * { /*z-index: 0!important;*/
+	
+}
+
+/*#footer{
+    margin-top: 30px;
+}*/
+#footer {
+	position: fixed;
+	bottom: 0px;
+	height: 25px;
+	width: 100%;
+	border-top: solid 1px #dddddd;
+	background: #f2f5f7 url("#{resource['images:bg-header-color-web-valendo.png']}")
+		no-repeat center center;
+	margin: 0;
+	color: #000;
+	opacity: 75%;
+	vertical-align: middle;
+	padding-top: 5px;
+}
+
+#footer * {
+	color: #000;
+}
+/* Für ie6*/
+* html #footer {
+	position: absolute;
+	top: expression((     0 -(     footer.offsetHeight)+(document.documentElement.clientHeight?
+		
+		
+		 document.documentElement.clientHeight:    document.body.clientHeight
+		)+(ignoreMe= 
+		
+		 document.documentElement.scrollTop?    document.documentElement.scrollTop:
+		
+		
+		 document.body.scrollTop ) )+'px' );
+}
+
+.msg-box {
+	margin-top: 20px;
+}
+
+.errors {
+	border: solid 1px red !important
+}
+
+.ui-accordion-header a {
+	color: #990000 !important;
+}
+
+#meta-user {
+	background: #f2f5f7;
+	height: 20px;
+	color: #000;
+}
+
+#meta-user .container_12 {
+	padding-top: 3px;
+}
+
+span.icone {
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	margin-right: 5px;
+	margin-top: 0;
+}
+
+span.icone-block {
+	width: 15px;
+	height: 15px;
+	display: block;
+	margin-right: 5px;
+	margin-top: 0;
+	float: left
+}
+
+span.icone-equipamentos {
+	background: url("#{resource['images:ico-equipamentos-15.png']}")
+		no-repeat left top;
+}
+
+span.icone-transportes {
+	background: url("#{resource['images:ico-transportes-15.png']}")
+		no-repeat left top;
+}
+
+span.icone-seguranca {
+	background: url("#{resource['images:ico-seguranca-15.png']}") no-repeat
+		left top;
+}
+
+span.icone-usuario {
+	background: url(../images/ico-usuario-15.png) no-repeat left top;
+}
+
+span.icone-grupo {
+	background: url(../images/ico-grupo-15.png) no-repeat left top;
+}
+
+span.icone-mapeamento {
+	background: url(../images/ico-mapeamento-15.png) no-repeat left top;
+}
+
+span.icone-logout {
+	background: url(../images/ico-logout-15.png) no-repeat left top;
+}
+
+span.icone-login {
+	background: url(../images/ico-login-15.png) no-repeat left top;
+}
+
+span.icone-home {
+	background: url("#{resource['images:ico-home-15.png']}") no-repeat left
+		top;
+}
+
+span.icone-data {
+	background: url(../images/ico-data-15.png) no-repeat 0 2px;
+}
+
+span.icone-hora {
+	background: url(../images/ico-relogio-15.png) no-repeat 0 2px;
+}
+
+span.icone-add {
+	background: url(../images/ico-relogio-15.png) no-repeat 0 2px;
+}
+
+span.icone-help {
+	background: url(../images/ico-help-15.png) no-repeat 0 2px;
+	cursor: help;
+	margin-top: -2px !important;
+}
+
+span.icone-noticia {
+	background: url(../images/ico-noticias-15.png) no-repeat 0 2px;
+	cursor: help;
+	margin-top: -2px !important;
+}
+/**
+*   Formularios
+*/
+label {
+	font-weight: lighter;
+	color: #333333;
+	text-transform: uppercase;
+	padding: 3px;
+	margin-bottom: 1px;
+	font-size: 10px;
+	display: block;
+}
+
+label .numero {
+	color: black;
+	font-weight: bold;
+	padding: 3px;
+	margin-right: 5px;
+}
+
+.hasDatepicker {
+	/*background: #fff url("#{resource['images:bg-data.png']}") no-repeat right 1px!important;*/
+	width: 130px !important;
+}
+
+.input-text,.text_ {
+	border: solid 1px #D8DCDF;
+	background: #fdfdfd;
+	padding: 3px;
+	margin-top: 3px;
+	width: 100% !important;
+}
+
+.input-text:focus,.text_ {
+	border: solid 1px #888;
+	background: #f0f0f0;
+}
+
+/**
+* Add datatable
+*/
+.dataTables_filter,.dataTables_length {
+	border: none !important;
+}
+
+.dataTables_filter label,.dataTables_length label {
+	font-weight: bold;
+	color: #000 !important;
+}
+
+.dataTables_filter input {
+	width: 300px !important;
+	border: solid 1px #ccc !important;
+	background: #fdfdfd;
+	padding: 3px;
+}
+
+.dataTables_length select {
+	border: solid 1px #ccc !important;
+	background: #fdfdfd;
+	padding: 3px;
+	width: 100px !important;
+}
+
+.dataTables_wrapper {
+	padding: 5px;
+	background: #fff;
+	border: solid 1px #D8DCDF !important;
+}
+
+.dataTables_paginate {
+	margin: 3px auto 10px auto !important;
+}
+
+table.datagrid td,table th {
+	height: 30px;
+	border: solid 1px #f0f0f0;
+	border-collapse: collapse
+}
+
+table th {
+	text-transform: uppercase;
+}
+
+table th .button {
+	text-transform: none !important;
+}
+/**
+* Genericos
+*/
+.full-me {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.half-me {
+	width: 49%;
+	border-collapse: collapse;
+}
+
+.no-full-me * {
+	width: auto !important;
+}
+
+.no-border-me {
+	border: none !important;
+}
+
+.space-me {
+	display: block;
+	width: 100%;
+	height: 2px;
+}
+
+.pad-me {
+	width: auto;
+	margin: 5px;
+}
+
+.pad-me-20 {
+	width: auto;
+	margin: 20px;
+}
+
+.no-pad-me {
+	margin-left: -5px !important
+}
+
+.w-auto-me {
+	width: auto !important;
+	margin: 0 auto;
+}
+
+.w-auto-me+.full-me {
+	width: 90%;
+}
+
+.float-me-left {
+	float: left
+}
+
+.float-me-right {
+	float: right
+}
+
+.align-me-left {
+	text-align: left;
+}
+
+.align-me-right {
+	text-align: right;
+}
+
+.align-me-center {
+	text-align: center;
+}
+
+.c-pointer {
+	cursor: pointer
+}
+
+.debug-me-0 {
+	border: solid 1px green;
+	border-collapse: collapse;
+}
+
+.printable {
+	font-family: serif;
+}
+
+#relatorio {
+	font-size: 1.2em;
+	line-height: 2em;
+	background: #fff;
+	width: 90% !important;
+	border: solid 1px gray;
+	margin: 20px;
+	padding: 20px;
+}
+
+.printable pre,.printable small {
+	font-size: 16px;
+	line-height: 25px;
+	color: #000 !important
+}
+
+.numericos {
+	text-align: right;
+}

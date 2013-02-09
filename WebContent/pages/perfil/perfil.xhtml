@@ -1,0 +1,131 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+
+	<ui:composition template="/template/template_padrao.xhtml">
+		<ui:define name="conteudo">
+
+			<p />
+
+			<p:outputPanel autoUpdate="true">
+				<h:panelGroup id="mensagens" layout="block">
+					<p:messages id="messages" showDetail="false" autoUpdate="true" />
+				</h:panelGroup>
+			</p:outputPanel>
+			<h:form binding="#{roleBean.form}" id="form" prependId="false">
+
+				<t:saveState value="#{roleBean.role}" />
+				<t:saveState value="#{roleBean.roles}" />
+				<t:saveState value="#{roleBean.state}" />
+
+				<p />
+				<p:panel header="Cadastro de Perfil">
+
+					<t:div id="blocoDePesquisa" rendered="#{roleBean.pesquisando}">
+						<div align="right" style="margin-bottom: 10px;">
+							<h:commandButton value="#{text['label.adicionar']}"
+								action="#{roleBean.preparaParaAdicionar}" styleClass="botao-default">
+								<f:ajax render="@form" />
+							</h:commandButton>					
+						</div>
+						<p />
+						<p:dataTable id="tabela" value="#{roleBean.listaRoles}"
+							var="role" rowClasses="odd, even" paginator="true"
+							paginatorPosition="bottom" rows="5"
+							emptyMessage="#{text['table.empty']}"
+							rowsPerPageTemplate="10,20,30,50,100">
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Descrição" />
+								</f:facet>
+								<h:outputText value="#{role.name}" />
+							</p:column>
+
+							<p:column headerText="Ações">
+								<!-- 
+								<div style="margin-left: 10px; float: left;">
+									<h:commandButton value="#{text['label.editar']}"
+										action="#{roleBean.preparaParaAlterar(role)}"
+										styleClass="botao-default">
+										<f:ajax render="@form" />
+									</h:commandButton>
+								</div>
+								-->
+								<div style="margin-left: 10px; float: left;">
+									<h:commandButton value="#{text['label.remover']}"
+										action="#{roleBean.remove}"
+										onclick="return confirm('Deseja realmente remover este perfil?');"
+										styleClass="botao-default">
+										<f:ajax render="@form :mensagens" />
+										<f:setPropertyActionListener target="#{roleBean.role}"
+											value="#{role}" />
+									</h:commandButton>
+								</div>
+							</p:column>
+
+							<f:facet name="footer">							 
+		            			Total #{roleBean.listaRoles.size()} Registro(s)  
+        					</f:facet>
+
+						</p:dataTable>
+
+					</t:div>
+
+					<t:div id="blocoDeEdicao" rendered="#{not roleBean.pesquisando}">
+
+						<p:focus for="descricao"/>
+						<div style="margin-left: 10px; float: left;">
+							<h:outputLabel value="Descrição" for="descricao" />
+							<p:inputText value="#{roleBean.role.name}"
+								required="true" requiredMessage="Informe a descrição do perfil."
+								id="descricao"  
+								onkeydown="this.value = this.value.toUpperCase()"
+								onkeyup="this.value = this.value.toUpperCase()"/>
+						</div>
+
+						<div class="clear"></div>
+						<div align="left" style="margin-left: 10px; margin-top: 20px;">
+
+							<div style="float: left;">
+								<h:commandButton value="#{text['label.salvar']}"
+									action="#{roleBean.adiciona}"
+									rendered="#{roleBean.adicionando}" styleClass="botao-default">
+									<f:ajax execute="@form" render="@form :mensagens" />
+								</h:commandButton>
+							</div>
+							<!-- 
+							<div style="float: left;">
+								<h:commandButton value="#{text['label.atualizar']}"
+									action="#{roleBean.altera}" rendered="#{roleBean.editando}"
+									styleClass="botao-default">
+									<f:ajax execute="@form" render="@form :mensagens" />
+								</h:commandButton>
+							</div>
+							-->
+							<div style="margin-left: 10px; float: left;">
+								<h:commandButton value="#{text['label.voltar']}"
+									action="#{roleBean.voltar}" styleClass="botao-default" immediate="true">
+									<f:ajax execute="@form" render="@form :mensagens" />
+								</h:commandButton>
+							</div>
+							<div class="clear"/>
+						</div>
+					</t:div>
+
+				</p:panel>
+
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>

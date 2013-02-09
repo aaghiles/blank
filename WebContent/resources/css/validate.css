@@ -1,0 +1,15 @@
+/* 
+    Document   : validate
+    Created on : 28/03/2012, 11:35:52
+    Author     : lsfreitas
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+* { font-family: Verdana; font-size: 96%; }
+label { display: block; margin-top: 10px; }
+label.error { float: none; color: red; margin: 0 .5em 0 0; vertical-align: top; font-size: 10px }
+p { clear: both; }
+.submit { margin-top: 1em; }
+em { font-weight: bold; padding-right: 1em; vertical-align: top; }
+

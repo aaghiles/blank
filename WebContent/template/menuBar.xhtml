@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	
+	<h:form>
+		<p:menubar>
+			<p:menuitem value="Home" icon="ui-icon-home" url="/pages/index.xhtml"/>
+
+			<p:submenu label="Segurança" icon="ui-icon-locked" rendered="#{usuarioWeb.usuarioAdmin}">
+				<p:submenu label="Controle de Acesso" icon="ui-icon-key" >
+					<p:menuitem value="Cadastrar Perfil" url="/pages/perfil/perfil.xhtml" icon="ui-icon-contact" /> 
+					<p:menuitem value="Cadastrar Usuário" url="/pages/usuario/usuario.xhtml" icon="ui-icon-person"/>
+					<p:menuitem value="Alterar Perfil de Usuário" url="/pages/usuario/perfil.xhtml" icon="ui-icon-person"/>
+					<p:menuitem value="Resetar Senha" url="/pages/usuario/reset.xhtml" icon="ui-icon-key" immediate="true"/>					
+				</p:submenu>
+			</p:submenu>
+
+			<p:menuitem value="Logout" action="#{loginBean.logout}"
+				icon="ui-icon-close" />
+		</p:menubar>
+	</h:form>
+
+
+</ui:composition>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="BlankProject" basedir="." default="all">
+	<property file="build.properties" />	
+
+	<path id="classpath">
+		<fileset dir="${webroot.dir}/WEB-INF/lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="webinf-classpath">
+		<fileset dir="${webroot.dir}/WEB-INF/lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="build-classpath">
+		<fileset dir="${lib.dir}/build">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<target name="clean">
+		<echo>Limpando o projeto</echo>
+		<delete dir="${default.target.dir}" />
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${war.local.dir}" />
+		<mkdir dir="${war.dev.dir}" />
+		<mkdir dir="${war.pro.dir}" />
+		<echo>Projeto limpo</echo>
+	</target>
+
+	<target name="compile_pro" depends="clean">
+		<!-- Compila App classes -->
+		<echo>Compilando o projeto</echo>
+		<copy file="${source.dir}/pro/jdbc.properties" toDir="${source.dir}/jdbc" />
+		<copy todir="${classes.dir}">
+			<fileset dir="${source.dir}" excludes="**/*.java" />
+		</copy>
+
+		<delete>
+			<fileset dir="${source.dir}/jdbc">
+				<include name="jdbc.properties" />
+			</fileset>
+			<fileset dir="${classes.dir}/jdbc">
+				<include name="jdbc.properties" />
+			</fileset>
+		</delete>
+
+		<copy file="${source.dir}/pro/jdbc.properties" toDir="${source.dir}/jdbc" />
+		<copy file="${source.dir}/pro/jdbc.properties" toDir="${classes.dir}/jdbc" />
+
+		<deltree dir="${classes.dir}/dev" />
+		<deltree dir="${classes.dir}/pro" />
+		<deltree dir="${classes.dir}/local" />
+
+		<javac destdir="${classes.dir}" srcdir="${source.dir}" includeantruntime="true" debug="true" debuglevel="vars,lines,source" source="1.7" target="1.7">
+			<classpath>
+				<path refid="webinf-classpath" />
+				<path refid="build-classpath" />
+			</classpath>
+		</javac>
+		<echo>Projeto compilado sem problemas</echo>
+	</target>
+
+	<target name="war_pro" description="create war file" depends="compile_pro">
+		<echo>Gerando o war</echo>
+
+		<war destfile="${war.pro.file}" webxml="${webroot.dir}/WEB-INF/web.xml" duplicate="fail">
+			<classes dir="${classes.dir}" />
+			<lib dir="${webroot.dir}/WEB-INF/lib">
+			</lib>
+			<fileset dir="${webroot.dir}">
+				<include name="WEB-INF/faces-config.xml" />
+				<include name="META-INF/**" />
+				<include name="resources/**" />
+				<include name="pages/**" />
+				<include name="auth/**" />
+				<include name="template/**" />
+				<include name="*.jsp" />
+				<include name="*.jspx" />
+				<include name="*.html" />
+				<include name="*.xhtml" />
+			</fileset>
+			<zipfileset dir="${webroot.dir}/WEB-INF/config" prefix="WEB-INF/config" excludes="**/*-test.xml" />
+		</war>
+		<echo>War gerado com sucesso</echo>
+	</target>
+
+	<target name="all" depends="war_pro">
+		<delete dir="${classes.dir}" />
+	</target>
+
+</project>

@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/template/template_padrao.xhtml">
+		<ui:define name="conteudo">
+			<p />
+			<p />
+			<p:outputPanel autoUpdate="true">
+				<h:panelGroup id="mensagens" layout="block">
+					<p:messages id="messages" showDetail="false" autoUpdate="true" />
+				</h:panelGroup>
+			</p:outputPanel>
+
+			<h:form binding="#{usuarioBean.form}">
+				<p:panel header="Cadastro de Usuários">
+
+					<t:saveState value="#{usuarioBean.state}" />
+					<t:saveState value="#{usuarioBean.usuario}" />
+
+					<t:div id="blocoDeEdicao" rendered="true">
+						<p:focus for="username" />
+
+
+						<div style="margin-left: 10px; float: left;">
+							<h:outputLabel value="Login" for="username" />
+							<p:inputText id="username" value="#{usuarioBean.loginAtual}"
+								label="Login" required="true" requiredMessage="Informe um Login"
+								onkeydown="this.value = this.value.toLowerCase()"
+								onkeyup="this.value = this.value.toLowerCase()" size="25" />
+						</div>
+
+						<div class="clear" />
+
+
+
+						<div align="left" style="margin-top: 20px;">
+							<div style="margin-left: 10px; float: left;">
+								<h:commandButton value="Redefinir Senha"
+									action="#{usuarioBean.resetPassword}"
+									styleClass="botao-default"
+									onclick="return confirm('Confirma a redefinição de senha?');">
+									<f:ajax execute="@form" render="@form :mensagens" />
+								</h:commandButton>
+							</div>
+							
+							<div class="clear" />
+						</div>
+					</t:div>
+				</p:panel>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>
